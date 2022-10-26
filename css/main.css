@@ -773,7 +773,7 @@ body {
   padding: 2px;
 }
 
-.sidebar .icon.add > i {
+.sidebar .icon.add i {
   font-size: 15px;
   padding: 3px;
 }
@@ -932,6 +932,14 @@ body {
   border-color: transparent;
 }
 
+.disabled i,
+.disabled .icon,
+.disabled .label-text,
+.disabled .label-post,
+.disabled .label-pre {
+  opacity: 0.4;
+}
+
 .selection-wrapper {
   display: flex;
   align-items: stretch;
@@ -1087,6 +1095,12 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.disabled .button-text,
+.disabled .button-post,
+.disabled .button-pre {
+  opacity: 0.4;
 }
 
 .button-wrapper.sm .button-text {
