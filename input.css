@@ -555,3 +555,88 @@ body {
 .selected .icon {
   background-color: #4ba35a;
 }
+
+.input-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+
+.input-text {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border-top: solid 2px #fff;
+  border-bottom: solid 2px #fff;
+  font-size: 1.5rem;
+  padding-left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.input-pre {
+  flex-grow: 0;
+  border: 2px solid #fff;
+  padding: 1.5rem;
+  position: relative;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-top-left-radius: 180px;
+  border-bottom-left-radius: 180px;
+  border-right: none;
+}
+
+.input-pre::before {
+  background: none;
+  border: 2px solid #fff;
+  content: '';
+  border-radius: 9999px;
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  pointer-events: none;
+}
+
+.input-text input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input-text input::placeholder {
+  color: #fff;
+  /* opacity: 0.4; */
+}
+
+.input-pre .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+}
+
+.input-post {
+  flex-grow: 0;
+  border: 2px solid #fff;
+  padding: 1.5rem;
+  position: relative;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-top-right-radius: 180px;
+  border-bottom-right-radius: 180px;
+  border-left: none;
+}
