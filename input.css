@@ -156,6 +156,14 @@ body {
   border-right: none;
 }
 
+.label-wrapper.sm .label-pre {
+  padding: 0.75rem;
+}
+
+.label-wrapper.empty .label-pre {
+  border-color: transparent;
+}
+
 .label-pre::before {
   background: none;
   border: 2px solid #fff;
@@ -172,6 +180,10 @@ body {
   pointer-events: none;
 }
 
+.label-wrapper.empty .label-pre::before {
+  border-color: transparent;
+}
+
 .label-text {
   flex-grow: 1;
   display: flex;
@@ -180,6 +192,25 @@ body {
   border-top: solid 2px #fff;
   border-bottom: solid 2px #fff;
   font-size: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1400px) {
+  .label-wrapper.sm .label-text {
+    padding-left: 0 !important;
+  }
+}
+
+.label-wrapper.sm .label-text {
+  font-size: 1rem;
+  justify-content: left;
+  padding-left: 1rem;
+}
+
+.label-wrapper.empty .label-text {
+  border-color: transparent;
 }
 
 .label-post {
@@ -193,6 +224,14 @@ body {
   border-top-right-radius: 180px;
   border-bottom-right-radius: 180px;
   border-left: none;
+}
+
+.label-wrapper.empty .label-post {
+  border-color: transparent;
+}
+
+.label-wrapper.sm .label-post {
+  padding: 0.75rem;
 }
 
 .label-post::before {
@@ -209,6 +248,10 @@ body {
   right: -2px;
   bottom: -2px;
   pointer-events: none;
+}
+
+.label-wrapper.empty .label-post::before {
+  border-color: transparent;
 }
 
 .selection-wrapper {
@@ -363,6 +406,13 @@ body {
   border-bottom: solid 2px #fff;
   font-size: 1.5rem;
   padding-left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.button-wrapper.sm .button-text {
+  font-size: 1rem;
 }
 
 .button-pre {
@@ -376,6 +426,10 @@ body {
   border-top-left-radius: 180px;
   border-bottom-left-radius: 180px;
   border-right: none;
+}
+
+.button-wrapper.sm .button-pre {
+  padding: 0.75rem;
 }
 
 .button-pre::before {
@@ -415,6 +469,10 @@ body {
   border-top-right-radius: 180px;
   border-bottom-right-radius: 180px;
   border-left: none;
+}
+
+.button-wrapper.sm .button-post {
+  padding: 0.75rem;
 }
 
 .selected .icon {
