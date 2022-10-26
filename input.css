@@ -24,12 +24,6 @@ p {
 }
 
 html {
-  /* background: rgb(1, 153, 181);
-  background: radial-gradient(
-    at top center,
-    rgba(1, 153, 181, 1) 0%,
-    rgba(2, 0, 36, 1) 100%
-  ); */
   color: #fff;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
