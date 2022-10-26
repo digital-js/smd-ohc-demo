@@ -644,7 +644,15 @@ html {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   background-image: url('../img/background-1920x1080-hi.png');
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  html {
+    background-image: url('../img/background-3840x2160-hi.png');
+  }
 }
 
 html,
