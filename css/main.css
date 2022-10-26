@@ -578,14 +578,6 @@ video {
   display: flex;
 }
 
-.w-\[16\.875\%\] {
-  width: 16.875%;
-}
-
-.w-\[76\.25\%\] {
-  width: 76.25%;
-}
-
 .w-\[91\.7\%\] {
   width: 91.7%;
 }
@@ -609,11 +601,6 @@ video {
 .bg-green-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .pt-\[5vh\] {
@@ -672,19 +659,61 @@ html {
   }
 }
 
+.sidebar {
+  width: 23.75%;
+  min-width: 300px;
+}
+
+.sidebar .logo {
+  height: 7.5vh;
+  padding-top: 5vh;
+  padding-bottom: 7.5vh;
+}
+
+.sidebar .user {
+  height: 7.5vh;
+  padding-top: 5vh;
+  padding-bottom: 7.5vh;
+}
+
+.sidebar .add {
+  height: 7.5vh;
+  padding-bottom: 7.5vh;
+}
+
+.sidebar .logo .sidebar-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.sidebar-content {
+  flex-grow: 1;
+  padding: 0 1rem;
+}
+
+.sidebar-action {
+  width: 40%;
+  max-width: 75px;
+  padding-left: 1rem;
+}
+
+.sidebar-action i {
+  font-size: 1.5rem;
+}
+
+.main {
+  width: 76.25%;
+}
+
 html,
 body {
   height: 100vh;
-}
-
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  border-top-right-radius: 180px;
-  border-bottom-right-radius: 180px;
-  padding: 0.5rem 0.5rem 0.5rem 0;
 }
 
 .logo-text {
@@ -736,6 +765,28 @@ body {
   border-top-right-radius: 180px;
   border-bottom-right-radius: 180px;
   border-left: none;
+}
+
+.sidebar .icon.add {
+  border: solid 2px #fff;
+  border-radius: 9999px;
+  padding: 2px;
+}
+
+.sidebar .icon.add > i {
+  font-size: 15px;
+  padding: 3px;
+}
+
+.main .back {
+  font-size: 1.5rem;
+  border: solid 2px #fff;
+  border-radius: 9999px;
+  padding: 6px;
+}
+
+.main .back i {
+  padding: 8px;
 }
 
 .form-post-item::before {
