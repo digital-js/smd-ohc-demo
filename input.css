@@ -62,6 +62,10 @@ html {
   padding-bottom: 7.5vh;
 }
 
+.sidebar .user .icon {
+  background-color: #4ba35a;
+}
+
 .sidebar .add {
   height: 7.5vh;
   padding-bottom: 7.5vh;
