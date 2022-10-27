@@ -13,6 +13,7 @@
     justify-content: space-between;
     align-items: stretch;
     margin-bottom: 1rem;
+    padding: 0 1rem;
   }
   .content {
     flex-grow: 1;
