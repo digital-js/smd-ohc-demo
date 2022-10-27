@@ -4,12 +4,12 @@ const vehicles = writable([
   {
     id: '93ae7a31-0545-4c75-bc7a-8bd75f80b7b2',
     name: 'AtomEV Q1234',
-    access: true
+    access: false
   },
   {
     id: '1bfd132f-c454-4e5c-b529-4dbca33ee49b',
     name: 'QuantumEV Q5678',
-    access: true
+    access: false
   },
   {
     id: '6f517211-8b9b-4c2f-a1df-c170494289c3',
