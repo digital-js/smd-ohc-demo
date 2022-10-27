@@ -1,22 +1,12 @@
 <script>
   import Layout from './layout.svelte'
-  import SidebarItem from '../components/sidebar-item.svelte'
-  import User from '../components/user.svelte'
+  import VehicleMenu from '../layouts/nav/vehicle-menu.svelte'
 </script>
 
 <Layout>
   <div slot="sidebar">
-    <SidebarItem>
-      <User name="John Doe" slot="content" />
-    </SidebarItem>
-    <SidebarItem>
-      <div slot="content">label</div>
-      <a href="/vehicles" slot="action">
-        <i class="fa-solid fa-plus" />
-      </a>
-    </SidebarItem>
+    <VehicleMenu />
   </div>
-  <h1 slot="main">Home</h1>
 </Layout>
 
 <style>
