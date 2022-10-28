@@ -15,6 +15,8 @@ const defaultUser = {
   localAccountId: ''
 }
 
+export let username = ''
+
 /**
  * @type { import('svelte/store').Writable<AccountInfo> }
  */
@@ -23,11 +25,13 @@ export const user = writable(defaultUser)
 export const addUser = (/** @type {AccountInfo} */ account) => {
   user.set(account)
   isAuthenticated.set(true)
+  username = account.username
 }
 
 export const removeUser = () => {
   user.set(defaultUser)
   isAuthenticated.set(false)
+  username = ''
 }
 
 export const error = writable()

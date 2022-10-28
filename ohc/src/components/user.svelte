@@ -1,9 +1,10 @@
 <script>
   import { onMount } from 'svelte'
   import { user } from '../stores/user'
+  import Auth from '../stores/auth'
   console.log($user)
   const handleClick = () => {
-    console.log('click')
+    Auth.editProfile()
   }
 </script>
 

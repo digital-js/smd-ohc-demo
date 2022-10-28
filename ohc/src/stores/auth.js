@@ -1,16 +1,11 @@
 import { msalConfig } from '../auth/config'
 import { b2cPolicies } from '../auth/policies'
 import { PublicClientApplication, EventType } from '@azure/msal-browser'
-import { addUser, removeUser, isAuthenticated } from './user'
+import { addUser, removeUser, isAuthenticated, username } from './user'
+
+let accountId = ''
 
 const msalInstance = new PublicClientApplication(msalConfig)
-
-const EVENTS = {
-  LOGIN_SUCCESS: 'msal:handleRedirectStart',
-  LOGIN_FAILURE: 'msal:handleRedirectEn',
-  LOGOUT: 'logout',
-  ACCOUNT_REMOVED: 'msal:accountRemoved'
-}
 
 msalInstance.enableAccountStorageEvents()
 
@@ -18,6 +13,7 @@ msalInstance.addEventCallback((message) => {
   console.log(message)
   switch (message.eventType) {
     case EventType.LOGIN_SUCCESS:
+    case EventType.ACQUIRE_TOKEN_SUCCESS:
       // @ts-ignore
       addUser(message.payload.account)
       return
@@ -62,12 +58,9 @@ const selectAccount = () => {
     )
 
     if (accounts.length > 1) {
-      // localAccountId identifies the entity for which the token asserts information.
       if (accounts.every((account) => account.localAccountId === accounts[0].localAccountId)) {
-        // All accounts belong to the same user
         addUser(accounts[0])
       } else {
-        // Multiple users detected. Logout all to be safe.
         logout()
       }
     } else if (accounts.length === 1) {
@@ -78,7 +71,6 @@ const selectAccount = () => {
   }
 }
 
-// incase of page refresh
 selectAccount()
 
 const login = async () => {
@@ -114,10 +106,19 @@ export const getToken = async () => {
 
   return response.accessToken
 }
+
+const editProfile = async () => {
+  const request = b2cPolicies.authorities.editProfile
+  request.loginHint = username
+  // @ts-ignore
+  msalInstance.loginPopup(request)
+}
+
 const auth = {
   login,
   logout,
-  getToken
+  getToken,
+  editProfile
 }
 
 export default auth

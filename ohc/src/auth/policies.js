@@ -20,7 +20,8 @@ export const b2cPolicies = {
       authority: `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/${policyNames.ResetPassword}`
     },
     editProfile: {
-      authority: `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/${policyNames.editProfile}`
+      authority: `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/${policyNames.editProfile}`,
+      loginHint: ''
     }
   },
   authorityDomain: `${tenantName}.b2clogin.com`
