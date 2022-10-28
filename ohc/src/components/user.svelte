@@ -1,5 +1,25 @@
 <script>
-  export let name = 'unknown'
+  import { onMount } from 'svelte'
+  import { msalInstance } from '../auth/config'
+  import { user } from '../stores/user'
+
+  onMount(async () => {
+    await msalInstance.handleRedirectPromise()
+
+    const accounts = msalInstance.getAllAccounts()
+
+    if (accounts.length === 0) {
+      await msalInstance.loginRedirect()
+    } else {
+      user.set(accounts[0])
+    }
+  })
+
+  const handleRedirectLogout = () => {
+    msalInstance.logoutRedirect()
+  }
+
+  console.log($user)
 </script>
 
 <div class="container">
@@ -8,9 +28,11 @@
       <i class="fa-solid fa-user" />
     </div>
   </div>
-  <div class="text">{name}</div>
+  <div class="text">{$user.name}</div>
   <div class="post" />
 </div>
+
+<button on:click={handleRedirectLogout}>Logout Redirect</button>
 
 <style>
   .container {

@@ -8,7 +8,7 @@
     <a href="/"><img src="/img/logo.svg" alt="logo" /></a>
   </div>
   <SidebarItem>
-    <User name="John Doe" slot="content" />
+    <User slot="content" />
   </SidebarItem>
   <slot name="sidebar" />
 </section>
