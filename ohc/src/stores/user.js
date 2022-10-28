@@ -1,12 +1,11 @@
 /**
  * @typedef { import ('@azure/msal-browser').AccountInfo } AccountInfo
  */
-import { writable, derived } from 'svelte/store'
+import { writable } from 'svelte/store'
 
-/**
- * @type { import('svelte/store').Writable<AccountInfo> }
- */
-export const user = writable({
+export const isAuthenticated = writable(false)
+
+const defaultUser = {
   homeAccountId: '',
   idTokenClaims: {},
   name: '',
@@ -14,10 +13,21 @@ export const user = writable({
   tenantId: '',
   username: '',
   localAccountId: ''
-})
+}
 
-export const isAuthenticated = derived(user, ($user) => {
-  return $user.homeAccountId !== ''
-})
+/**
+ * @type { import('svelte/store').Writable<AccountInfo> }
+ */
+export const user = writable(defaultUser)
+
+export const addUser = (/** @type {AccountInfo} */ account) => {
+  user.set(account)
+  isAuthenticated.set(true)
+}
+
+export const removeUser = () => {
+  user.set(defaultUser)
+  isAuthenticated.set(false)
+}
 
 export const error = writable()

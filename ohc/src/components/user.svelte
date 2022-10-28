@@ -1,28 +1,13 @@
 <script>
   import { onMount } from 'svelte'
-  import { msalInstance } from '../auth/config'
   import { user } from '../stores/user'
-
-  onMount(async () => {
-    await msalInstance.handleRedirectPromise()
-
-    const accounts = msalInstance.getAllAccounts()
-
-    if (accounts.length === 0) {
-      await msalInstance.loginRedirect()
-    } else {
-      user.set(accounts[0])
-    }
-  })
-
-  const handleRedirectLogout = () => {
-    msalInstance.logoutRedirect()
-  }
-
   console.log($user)
+  const handleClick = () => {
+    console.log('click')
+  }
 </script>
 
-<div class="container">
+<button class="container" on:click={handleClick}>
   <div class="pre">
     <div class="icon">
       <i class="fa-solid fa-user" />
@@ -30,11 +15,19 @@
   </div>
   <div class="text">{$user.name}</div>
   <div class="post" />
-</div>
-
-<button on:click={handleRedirectLogout}>Logout Redirect</button>
+</button>
 
 <style>
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    width: 100%;
+  }
   .container {
     display: flex;
     justify-content: space-between;

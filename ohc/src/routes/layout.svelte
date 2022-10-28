@@ -1,16 +1,32 @@
 <script>
+  import { onMount } from 'svelte'
   import SidebarItem from '../components/sidebar-item.svelte'
   import User from '../components/user.svelte'
+  import Auth from '../stores/auth'
+  import { isAuthenticated } from '../stores/user'
+
+  const handleLogin = async () => {
+    await Auth.login()
+  }
+
+  const handleLogout = async () => {
+    await Auth.logout()
+  }
 </script>
 
 <section class="sidebar">
   <div class="logo">
     <a href="/"><img src="/img/logo.svg" alt="logo" /></a>
   </div>
-  <SidebarItem>
-    <User slot="content" />
-  </SidebarItem>
-  <slot name="sidebar" />
+  {#if $isAuthenticated}
+    <SidebarItem>
+      <User slot="content" />
+    </SidebarItem>
+    <slot name="sidebar" />
+    <button on:click={handleLogout}>Logout</button>
+  {:else}
+    <button on:click={handleLogin}>Login</button>
+  {/if}
 </section>
 <section class="main">
   <div class="content">

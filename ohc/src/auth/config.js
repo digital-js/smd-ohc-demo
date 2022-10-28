@@ -1,6 +1,11 @@
 import { LogLevel, PublicClientApplication } from '@azure/msal-browser'
 import { b2cPolicies } from './policies'
 
+const cacheLocations = {
+  localStorage: 'localStorage',
+  sessionStorage: 'sessionStorage'
+}
+
 // Config object to be passed to Msal on creation
 export const msalConfig = {
   auth: {
@@ -10,7 +15,7 @@ export const msalConfig = {
     redirectUri: 'http://localhost:5173/'
   },
   cache: {
-    cacheLocation: 'sessionStorage', // This configures where your cache will be stored
+    cacheLocation: cacheLocations.localStorage, // This configures where your cache will be stored
     storeAuthStateInCookie: false // Set this to "true" if you are having issues on IE11 or Edge
   },
   system: {
@@ -45,6 +50,12 @@ export const msalConfig = {
 }
 
 export const msalInstance = new PublicClientApplication(msalConfig)
+
+msalInstance.enableAccountStorageEvents()
+
+msalInstance.addEventCallback((message) => {
+  console.log(message)
+})
 
 export const loginRequest = {
   scopes: ['openid', msalConfig.auth.clientId]
