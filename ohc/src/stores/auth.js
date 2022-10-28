@@ -74,7 +74,7 @@ const selectAccount = () => {
 selectAccount()
 
 const login = async () => {
-  await msalInstance.loginPopup()
+  await msalInstance.loginRedirect()
 
   const accounts = msalInstance.getAllAccounts()
 
@@ -85,7 +85,7 @@ const login = async () => {
 }
 
 const logout = async () => {
-  await msalInstance.logoutPopup()
+  await msalInstance.logoutRedirect()
 }
 
 export const getToken = async () => {
@@ -111,7 +111,7 @@ const editProfile = async () => {
   const request = b2cPolicies.authorities.editProfile
   request.loginHint = username
   // @ts-ignore
-  msalInstance.loginPopup(request)
+  msalInstance.loginRedirect(request)
 }
 
 const auth = {

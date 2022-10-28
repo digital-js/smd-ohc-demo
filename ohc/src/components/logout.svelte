@@ -1,19 +1,30 @@
 <script>
-  import { user } from '../stores/user'
   import Auth from '../stores/auth'
 
-  const handleClick = () => {
-    Auth.editProfile()
+  let hovering = false
+
+  const enter = () => {
+    hovering = true
   }
+  const leave = () => {
+    hovering = false
+  }
+
+  const handleClick = () => {
+    Auth.logout()
+  }
+
+  const hoverClass = hovering ? 'hover' : ''
 </script>
 
-<button class="container" on:click={handleClick}>
-  <div class="pre">
-    <div class="icon">
-      <i class="fa-solid fa-user" />
-    </div>
-  </div>
-  <div class="text">{$user.name}</div>
+<button
+  class="container {hoverClass}"
+  on:mouseenter={enter}
+  on:mouseleave={leave}
+  on:click={handleClick}
+>
+  <div class="pre" />
+  <div class="text">Logout</div>
   <div class="post" />
 </button>
 
@@ -43,17 +54,6 @@
     border-right: none;
     padding: 0.75rem;
   }
-  .pre::before {
-    content: '';
-    display: block;
-    position: absolute;
-    border: solid 2px #fff;
-    border-radius: 9999px;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-  }
   .text {
     flex-grow: 1;
     padding-left: 1rem;
@@ -73,18 +73,17 @@
     border-left: none;
     padding: 0.75rem;
   }
-  .icon {
+  .hover .text::before,
+  .hover .pre::after,
+  .hover .post::before {
+    content: '';
+    display: block;
+    opacity: 0.4;
+    background-color: #fff;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
-    justify-content: center;
-    border-radius: 9999px;
-    background: #4ba35a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 </style>

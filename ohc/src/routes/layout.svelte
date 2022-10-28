@@ -2,16 +2,8 @@
   import { onMount } from 'svelte'
   import SidebarItem from '../components/sidebar-item.svelte'
   import User from '../components/user.svelte'
-  import Auth from '../stores/auth'
+  import AuthButton from '../components/auth-button.svelte'
   import { isAuthenticated } from '../stores/user'
-
-  const handleLogin = async () => {
-    await Auth.login()
-  }
-
-  const handleLogout = async () => {
-    await Auth.logout()
-  }
 </script>
 
 <section class="sidebar">
@@ -23,10 +15,10 @@
       <User slot="content" />
     </SidebarItem>
     <slot name="sidebar" />
-    <button on:click={handleLogout}>Logout</button>
-  {:else}
-    <button on:click={handleLogin}>Login</button>
   {/if}
+  <SidebarItem>
+    <AuthButton slot="content" />
+  </SidebarItem>
 </section>
 <section class="main">
   <div class="content">
@@ -63,5 +55,8 @@
   img {
     width: 100%;
     height: auto;
+  }
+  .auth {
+    margin-top: 5rem;
   }
 </style>

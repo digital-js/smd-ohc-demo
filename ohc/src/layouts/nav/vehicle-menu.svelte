@@ -15,7 +15,7 @@
   </a>
 </SidebarItem>
 
-{#each $grantedVehicles as vehicle}
+{#each $grantedVehicles as vehicle (vehicle.id)}
   <SidebarItem>
     <Link path={`/vehicles/${vehicle.id}`} text={vehicle.name} slot="content" {disabled} />
   </SidebarItem>

@@ -11,7 +11,7 @@
   </div>
   <div slot="main" class="main">
     <Heading text="Request vehicle access" />
-    <Heading text="Another" />
+    <Heading text="Search vehicles..." />
     <VehicleList />
   </div>
   <span slot="footer" class="footer">

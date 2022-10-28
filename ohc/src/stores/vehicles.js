@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { writable, derived } from 'svelte/store'
 
 const vehicles = writable([
@@ -33,33 +34,33 @@ const vehicle = derived([selectedVehicleId, vehicles], ([$selectedVehicleId, $ve
   return $vehicles.find((vehicle) => vehicle.id === $selectedVehicleId)
 })
 
-const grantVehicleAccess = (/** @type {string} */ id) => {
+const grantVehicleAccess = (id) => {
   vehicles.update((items) => {
     return items.map((item) => {
       if (item.id === id) {
-        item.access = true
+        return { ...item, access: true }
       }
       return item
     })
   })
 }
 
-const revokeVehicleAccess = (/** @type {string} */ id) => {
+const revokeVehicleAccess = (id) => {
   vehicles.update((items) => {
     return items.map((item) => {
       if (item.id === id) {
-        item.access = false
+        return { ...item, access: false }
       }
       return item
     })
   })
 }
 
-const selectVehicle = (/** @type {string} */ id) => {
+const selectVehicle = (id) => {
   selectedVehicleId.set(id)
 }
 
-const unSelectVehicle = (/** @type {string} */ id) => {
+const unSelectVehicle = (id) => {
   selectedVehicleId.set('')
 }
 
