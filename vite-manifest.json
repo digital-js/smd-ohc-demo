@@ -1,6 +1,6 @@
 {
   "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "_app/immutable/start-2654449d.js",
+    "file": "_app/immutable/start-065ac621.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -135,6 +135,10 @@
     "file": "_app/immutable/assets/_error-93668922.css",
     "src": "src/routes/+error.css"
   },
+  "layout.css": {
+    "file": "_app/immutable/assets/layout-34cd8bce.css",
+    "src": "layout.css"
+  },
   "vehicle-menu.css": {
     "file": "_app/immutable/assets/vehicle-menu-217f1f50.css",
     "src": "vehicle-menu.css"
@@ -142,9 +146,5 @@
   "src/routes/vehicles/+page.css": {
     "file": "_app/immutable/assets/_page-4a0574c5.css",
     "src": "src/routes/vehicles/+page.css"
-  },
-  "layout.css": {
-    "file": "_app/immutable/assets/layout-34cd8bce.css",
-    "src": "layout.css"
   }
 }
