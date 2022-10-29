@@ -3,8 +3,6 @@ import { b2cPolicies } from '../auth/policies'
 import { PublicClientApplication, EventType } from '@azure/msal-browser'
 import { addUser, removeUser, isAuthenticated, username } from './user'
 
-let accountId = ''
-
 const msalInstance = new PublicClientApplication(msalConfig)
 
 msalInstance.enableAccountStorageEvents()

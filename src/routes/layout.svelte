@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import SidebarItem from '../components/sidebar-item.svelte'
   import User from '../components/user.svelte'
   import AuthButton from '../components/auth-button.svelte'
