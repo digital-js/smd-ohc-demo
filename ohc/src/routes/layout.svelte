@@ -56,7 +56,4 @@
     width: 100%;
     height: auto;
   }
-  .auth {
-    margin-top: 5rem;
-  }
 </style>
