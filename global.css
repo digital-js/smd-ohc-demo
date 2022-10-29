@@ -15,7 +15,7 @@ html {
   color: #fff;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-image: url('../img/background-1920x1080-hi.png');
+  background-image: url('/img/background-1920x1080-hi.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
