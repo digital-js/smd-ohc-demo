@@ -1,5 +1,5 @@
 <script>
-  import { grantedVehicles } from '../../stores/vehicles'
+  import { grantedVehicles, selectedVehicleId, vehicles } from '../../stores/vehicles'
   import SidebarItem from '../../components/sidebar-item.svelte'
   import Link from '../../components/link.svelte'
 
@@ -17,7 +17,13 @@
 
 {#each $grantedVehicles as vehicle (vehicle.id)}
   <SidebarItem>
-    <Link path={`/vehicles/${vehicle.id}`} text={vehicle.name} slot="content" {disabled} />
+    <Link
+      path={`/vehicles/${vehicle.id}`}
+      text={vehicle.name}
+      slot="content"
+      {disabled}
+      selected={vehicle.id === $selectedVehicleId}
+    />
   </SidebarItem>
 {/each}
 

@@ -1,37 +1,51 @@
-// @ts-nocheck
-import { writable, derived } from 'svelte/store'
+import { writable, derived, get } from 'svelte/store'
+import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 
-const vehicles = writable([
-  {
-    id: '93ae7a31-0545-4c75-bc7a-8bd75f80b7b2',
-    name: 'AtomEV Q1234',
-    access: false
-  },
-  {
-    id: '1bfd132f-c454-4e5c-b529-4dbca33ee49b',
-    name: 'QuantumEV Q5678',
-    access: false
-  },
-  {
-    id: '6f517211-8b9b-4c2f-a1df-c170494289c3',
-    name: 'AtomEV Q4321',
-    access: false
-  },
-  {
-    id: ' 6e42ec2d-0d05-4c68-88d3-0453e3e2ce07',
-    name: 'QuantumEV Q1234',
-    access: false
-  }
-])
+const vehicles = writable([])
 
 const selectedVehicleId = writable('')
+
+const currentTemperature = writable(null)
+
+let connection = new HubConnectionBuilder()
+  .withAutomaticReconnect()
+  .withUrl('https://localhost:7104/hubs/vehicles')
+  .configureLogging(LogLevel.Information)
+  .build()
+
+connection.on('MessageReceived', ({ type, payload }) => {
+  console.log(type, payload)
+
+  switch (type) {
+    case 'VEHICLE_ADDED':
+      vehicles.update((items) => {
+        return [...items, payload]
+      })
+      break
+    case 'TELEMETRY_RECEIVED':
+      vehicles.update((items) => {
+        return items.map((item) => {
+          const id = get(selectedVehicleId)
+          if (item.id === id) {
+            return { ...item, temperature: payload.temperature }
+          }
+          return item
+        })
+      })
+      break
+  }
+})
+
+const establishConnection = async () => {
+  await connection.start()
+}
 
 const grantedVehicles = derived(vehicles, ($vehicles) => {
   return $vehicles.filter((vehicle) => vehicle.access)
 })
 
-const vehicle = derived([selectedVehicleId, vehicles], ([$selectedVehicleId, $vehicles]) => {
-  return $vehicles.find((vehicle) => vehicle.id === $selectedVehicleId)
+const selectedVehicle = derived([selectedVehicleId, vehicles], ([$selectedVehicleId, $v]) => {
+  return $v.find((vehicle) => vehicle.id === $selectedVehicleId)
 })
 
 const grantVehicleAccess = (id) => {
@@ -56,20 +70,43 @@ const revokeVehicleAccess = (id) => {
   })
 }
 
-const selectVehicle = (id) => {
-  selectedVehicleId.set(id)
+const getVehicle = (id) => {
+  $vehicles.find((item) => item.id === id)
 }
 
-const unSelectVehicle = (id) => {
-  selectedVehicleId.set('')
+const fetchVehicles = async () => {
+  var res = await fetch('https://localhost:7104/api/vehicles')
+  var data = await res.json()
+  vehicles.set(data)
 }
+
+const joinVehicleBroadcast = async (id) => {
+  try {
+    await connection.invoke('JoinVehicleBroadcast', id)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const leaveVehicleBroadcast = async (id) => {
+  try {
+    await connection.invoke('LeaveVehicleBroadcast', id)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+establishConnection()
+fetchVehicles()
 
 export {
   grantVehicleAccess,
   grantedVehicles,
   revokeVehicleAccess,
-  selectVehicle,
-  unSelectVehicle,
-  vehicle,
-  vehicles
+  getVehicle,
+  vehicles,
+  selectedVehicleId,
+  joinVehicleBroadcast,
+  leaveVehicleBroadcast,
+  currentTemperature
 }

@@ -5,5 +5,8 @@
 	],
 	"/vehicles": [
 		"src/routes/+layout.js"
+	],
+	"/vehicles/[id]": [
+		"src/routes/+layout.js"
 	]
 }

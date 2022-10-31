@@ -1,0 +1,30 @@
+### Get All Vehicles
+GET https://localhost:7104/api/vehicles HTTP/1.1
+Content-Type: application/json
+
+### Add Vehicle
+POST https://localhost:7104/api/vehicles HTTP/1.1
+content-type: application/json
+
+{
+    "name": "QuantumEV Q56789",
+    "access": false
+}
+
+### Add Vehicle
+POST https://localhost:7104/api/vehicles HTTP/1.1
+content-type: application/json
+
+{
+    "name": "AtomEV Q4321",
+    "access": false
+}
+
+### Add Vehicle
+POST https://localhost:7104/api/vehicles HTTP/1.1
+content-type: application/json
+
+{
+    "name": "QuantumEV Q5555",
+    "access": false
+}
