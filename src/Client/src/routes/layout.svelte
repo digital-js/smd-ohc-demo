@@ -1,3 +1,4 @@
+
 <script>
   import SidebarItem from '../components/sidebar-item.svelte'
   import User from '../components/user.svelte'

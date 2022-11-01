@@ -15,8 +15,10 @@
   let name
   let temperature
 
-  $: name = $vehicles.find((v) => v.id === id)?.name || 'Unknown'
-  $: temperature = $vehicles.find((v) => v.id === id)?.temperature || 'Unknown'
+	$: vehicle = $vehicles.find(v => v.id === id)
+  $: name = vehicle.name
+  $: temperature = vehicle.temperature
+  $: temperatureText = temperature ? `${temperature}°C` : 'Waiting for telemetry data...'
 
   selectedVehicleId.set(id)
 
@@ -36,9 +38,7 @@
   </div>
   <div slot="main" class="main">
     <Heading text={name} />
-		{#if temperature !== 'Unknown'}
-    	<Heading text={temperature + '°C'} />
-		{/if}
+    	<Heading text={temperatureText} />
   </div>
   <span slot="footer" class="footer">
     <a href="/"><i class="fa-solid fa-chevron-left" /></a>
