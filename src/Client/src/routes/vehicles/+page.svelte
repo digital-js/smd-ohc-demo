@@ -2,7 +2,13 @@
   import Layout from '../layout.svelte'
   import VehicleMenu from '../../layouts/nav/vehicle-menu.svelte'
   import Heading from '../../components/heading.svelte'
+  import Input from '../../components/input.svelte'
   import VehicleList from './vehicle-list.svelte'
+	import { searchTerm } from '../../stores/vehicles'
+
+	let searchValue
+
+	$: searchTerm.set(searchValue)
 </script>
 
 <Layout>
@@ -11,7 +17,7 @@
   </div>
   <div slot="main" class="main">
     <Heading text="Request vehicle access" />
-    <Heading text="Search vehicles..." />
+    <Input bind:value={searchValue} />
     <VehicleList />
   </div>
   <span slot="footer" class="footer">

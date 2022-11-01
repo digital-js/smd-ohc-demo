@@ -8,8 +8,7 @@
     selectedVehicleId,
     vehicles,
     joinVehicleBroadcast,
-    leaveVehicleBroadcast,
-    currentTemperature
+    leaveVehicleBroadcast
   } from '../../../stores/vehicles'
 
   const id = $page.params.id
@@ -17,7 +16,7 @@
   let temperature
 
   $: name = $vehicles.find((v) => v.id === id)?.name || 'Unknown'
-  $: temperature = $vehicles.find((v) => v.id === id)?.temperature + '°C' || 'Unknown'
+  $: temperature = $vehicles.find((v) => v.id === id)?.temperature || 'Unknown'
 
   selectedVehicleId.set(id)
 
@@ -26,8 +25,8 @@
   })
 
   onDestroy(async () => {
+    selectedVehicleId.set('')
     await leaveVehicleBroadcast(id)
-    selectedVehicleId.set(null)
   })
 </script>
 
@@ -37,7 +36,9 @@
   </div>
   <div slot="main" class="main">
     <Heading text={name} />
-    <Heading text={temperature} />
+		{#if temperature !== 'Unknown'}
+    	<Heading text={temperature + '°C'} />
+		{/if}
   </div>
   <span slot="footer" class="footer">
     <a href="/"><i class="fa-solid fa-chevron-left" /></a>

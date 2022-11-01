@@ -1,33 +1,19 @@
 <script>
-  import { user } from '../stores/user'
-  import Auth from '../stores/auth'
-
-  const handleClick = () => {
-    Auth.editProfile()
-  }
+  export let value = ''
+  export let placeholder = '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _'
 </script>
 
-<button class="container" on:click={handleClick}>
+<div class="container">
   <div class="pre">
-    <div class="icon">
-      <i class="fa-solid fa-user" />
-    </div>
-  </div>
-  <div class="text">{$user.name}</div>
+		<div class="icon">
+			<i class="fa-solid fa-search" />
+		</div>
+	</div>
+  <input type="text" {placeholder} bind:value={value} />
   <div class="post" />
-</button>
+</div>
 
 <style>
-  button {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    width: 100%;
-  }
   .container {
     display: flex;
     justify-content: space-between;
@@ -41,7 +27,7 @@
     border-top-left-radius: 180px;
     border-bottom-left-radius: 180px;
     border-right: none;
-    padding: 0.75rem;
+    padding: 1.5rem;
   }
   .pre::before {
     content: '';
@@ -54,16 +40,26 @@
     right: -2px;
     bottom: -2px;
   }
-  .text {
+  input {
     flex-grow: 1;
-    padding-left: 1rem;
+    font-size: 1.5rem;
+    font-weight: normal;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    text-align: center;
+    text-align: left;
+		border: none;
     border-top: solid 2px #fff;
     border-bottom: solid 2px #fff;
+		outline: none;
+	  background: transparent;
+		color: #fff;
+		padding-left: 0.5rem;
+		padding-right: 2rem;
   }
+	input::placeholder {
+		color: #fff;
+	}
   .post {
     position: relative;
     flex-grow: 0;
@@ -82,10 +78,9 @@
     display: flex;
     justify-content: center;
     border-radius: 9999px;
-    background: #4ba35a;
     display: flex;
     justify-content: center;
     align-items: center;
-		font-size: 1rem;
+		font-size: 1.3rem;
   }
 </style>

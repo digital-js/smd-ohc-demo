@@ -7,6 +7,17 @@ const selectedVehicleId = writable('')
 
 const currentTemperature = writable(null)
 
+const searchTerm = writable('')
+
+const filteredVehicles = derived([vehicles, searchTerm], ([$vehicles, $searchTerm]) => {
+  if (!$searchTerm) {
+    return $vehicles
+  }
+  return $vehicles.filter((vehicle) => {
+    return vehicle.name.toLowerCase().includes($searchTerm.toLowerCase())
+  })
+})
+
 let connection = new HubConnectionBuilder()
   .withAutomaticReconnect()
   .withUrl('https://localhost:7104/hubs/vehicles')
@@ -108,5 +119,7 @@ export {
   selectedVehicleId,
   joinVehicleBroadcast,
   leaveVehicleBroadcast,
-  currentTemperature
+  currentTemperature,
+  searchTerm,
+  filteredVehicles
 }
